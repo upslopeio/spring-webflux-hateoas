@@ -3,10 +3,7 @@ package io.upslope.hypermedia.issues;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -18,6 +15,7 @@ import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.met
 
 @RestController
 @RequestMapping("/issues")
+@CrossOrigin(origins = "*")
 public class IssuesController {
 
     private List<Issue> issues = asList(
