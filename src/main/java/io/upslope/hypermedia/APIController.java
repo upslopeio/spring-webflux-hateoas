@@ -17,7 +17,7 @@ import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.lin
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.methodOn;
 
 @RestController
-@RequestMapping("/api/v2")
+@RequestMapping("/")
 public class APIController {
 
     @GetMapping("")

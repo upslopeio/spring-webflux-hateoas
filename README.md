@@ -24,6 +24,11 @@ In `src/main/resources/application.properties` add:
 spring.main.web-application-type=reactive
 ```
 
+## See Examples
+
+- [IssuesController](src/main/java/io/upslope/hypermedia/issues/IssuesController.java)
+- [APIController](src/main/java/io/upslope/hypermedia/APIController.java)
+
 ## Reference Documentation
 
 For further reference, please consider the following sections:
