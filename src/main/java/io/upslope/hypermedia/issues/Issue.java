@@ -1,7 +1,4 @@
-package io.upslope.hypermedia;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+package io.upslope.hypermedia.issues;
 
 import java.util.*;
 

@@ -1,6 +1,5 @@
-package io.upslope.hypermedia.v2;
+package io.upslope.hypermedia.issues;
 
-import io.upslope.hypermedia.Issue;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +18,7 @@ import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.met
 
 @RestController
 @RequestMapping("/api/v2/issues")
-public class IssuesControllerV2 {
+public class IssuesController {
 
     private List<Issue> issues = asList(
             new Issue(UUID.fromString("039a486b-39df-496f-a32d-302cdb39fab7"), "get webflux working"),
@@ -31,7 +30,7 @@ public class IssuesControllerV2 {
 
     @GetMapping("")
     public Mono<CollectionModel<EntityModel<Issue>>> all() {
-        var controller = methodOn(IssuesControllerV2.class);
+        var controller = methodOn(IssuesController.class);
 
         return Flux.fromIterable(issues)
                 .flatMap(issue -> linkTo(controller.show(issue.getId())).withSelfRel().toMono().map(link -> EntityModel.of(issue, link)))
@@ -43,7 +42,7 @@ public class IssuesControllerV2 {
 
     @GetMapping("/{id}")
     public ResponseEntity<Mono<EntityModel<Issue>>> show(@PathVariable("id") UUID id) {
-        var controller = methodOn(IssuesControllerV2.class);
+        var controller = methodOn(IssuesController.class);
 
         Optional<Issue> optionalIssue = issues.stream().filter(x -> x.getId().equals(id)).findFirst();
 
