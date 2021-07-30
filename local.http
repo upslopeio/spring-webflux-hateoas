@@ -1,6 +1,6 @@
-GET http://localhost:8080/api/v2/issues
+GET http://localhost:8080/issues
 Accept: application/json
-X-Forwarded-Host: api.example.com
+X-Forwarded-Host: gateway.example.com
 X-Forwarded-Port: 3000
 
 ###

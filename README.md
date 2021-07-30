@@ -24,10 +24,28 @@ In `src/main/resources/application.properties` add:
 spring.main.web-application-type=reactive
 ```
 
+## Add Bean
+
+Add the following bean somewhere in your app:
+
+```java
+ @Bean
+ public ForwardedHeaderTransformer forwardedHeaderTransformer() {
+     return new ForwardedHeaderTransformer();
+ }
+```
+
 ## See Examples
 
 - [IssuesController](src/main/java/io/upslope/hypermedia/issues/IssuesController.java)
 - [APIController](src/main/java/io/upslope/hypermedia/APIController.java)
+
+## Next Steps
+
+Separate the POJO (which is likely connected to the database) from the model assemblers.
+
+See [this link](https://howtodoinjava.com/spring5/hateoas/spring-hateoas-tutorial/) for details.
+
 
 ## Reference Documentation
 

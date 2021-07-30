@@ -4,7 +4,6 @@ import org.springframework.hateoas.server.core.Relation;
 
 import java.util.*;
 
-
 @Relation(collectionRelation = "issues")
 public class Issue {
 
