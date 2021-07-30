@@ -25,8 +25,8 @@ public class APIController {
     @GetMapping("")
     public Mono<RootModel> all() {
         List<WebFluxLinkBuilder.WebFluxLink> topLevelLinks = asList(
-                linkTo(methodOn(IssuesController.class).all()).withRel("employees"),
-                linkTo(methodOn(IssuesController.class).all()).withRel("issues")
+                linkTo(methodOn(IssuesController.class).all()).withRel("issues"),
+                linkTo(methodOn(IssuesController.class).show(null)).withRel("issues:find")
         );
 
         return Flux.fromIterable(topLevelLinks)

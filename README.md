@@ -33,6 +33,8 @@ spring.main.web-application-type=reactive
 
 For further reference, please consider the following sections:
 
+* https://medium.com/@cheron.antoine/reactor-java-1-how-to-create-mono-and-flux-471c505fa158
+* 
 * https://howtodoinjava.com/spring5/hateoas/spring-hateoas-tutorial/
 * https://grapeup.com/blog/how-to-build-hypermedia-api-with-spring-hateoas/
 * [Spring HATEOAS](https://docs.spring.io/spring-boot/docs/2.5.3/reference/htmlsingle/#boot-features-spring-hateoas)

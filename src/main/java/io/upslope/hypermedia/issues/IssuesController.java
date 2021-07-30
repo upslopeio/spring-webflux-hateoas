@@ -35,7 +35,7 @@ public class IssuesController {
 
         List<WebFluxLinkBuilder.WebFluxLink> collectionLinks = asList(
                 linkTo(controller.all()).withSelfRel(),
-                linkTo(controller.show(null)).withRel("findOne")
+                linkTo(controller.show(null)).withRel("issues:find")
         );
 
         Mono<List<Link>> listMono = Flux.fromIterable(collectionLinks)
