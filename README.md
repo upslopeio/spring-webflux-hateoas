@@ -37,4 +37,3 @@ For further reference, please consider the following sections:
 * https://grapeup.com/blog/how-to-build-hypermedia-api-with-spring-hateoas/
 * [Spring HATEOAS](https://docs.spring.io/spring-boot/docs/2.5.3/reference/htmlsingle/#boot-features-spring-hateoas)
 * [Building a Hypermedia-Driven RESTful Web Service](https://spring.io/guides/gs/rest-hateoas/)
-

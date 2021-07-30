@@ -2,12 +2,15 @@ package io.upslope.hypermedia.issues;
 
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.reactive.WebFluxLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.*;
+import java.util.function.Function;
 
 import static java.util.Arrays.asList;
 import static org.springframework.hateoas.server.reactive.WebFluxLinkBuilder.linkTo;
@@ -30,12 +33,22 @@ public class IssuesController {
     public Mono<CollectionModel<EntityModel<Issue>>> all() {
         var controller = methodOn(IssuesController.class);
 
+        List<WebFluxLinkBuilder.WebFluxLink> collectionLinks = asList(
+                linkTo(controller.all()).withSelfRel(),
+                linkTo(controller.show(null)).withRel("findOne")
+        );
+
+        Mono<List<Link>> listMono = Flux.fromIterable(collectionLinks)
+                .flatMap(webFluxLink -> webFluxLink.toMono().map(Function.identity()))
+                .collectList();
+
         return Flux.fromIterable(issues)
-                .flatMap(issue -> linkTo(controller.show(issue.getId())).withSelfRel().toMono().map(link -> EntityModel.of(issue, link)))
-                .collectList()
-                .flatMap(resources -> linkTo(controller.all()).withSelfRel()
+                .flatMap(issue -> linkTo(controller.show(issue.getId()))
+                        .withSelfRel()
                         .toMono()
-                        .map(selfLink -> CollectionModel.of(resources, selfLink)));
+                        .map(link -> EntityModel.of(issue, link)))
+                .collectList()
+                .flatMap(resources -> listMono.flatMap(links -> Mono.just(CollectionModel.of(resources, links))));
     }
 
     @GetMapping("/{id}")
@@ -47,7 +60,10 @@ public class IssuesController {
         return optionalIssue
                 .map(issue -> ResponseEntity
                         .status(200)
-                        .body(linkTo(controller.show(id)).withSelfRel().toMono().map(link -> EntityModel.of(issue, link))))
+                        .body(linkTo(controller.show(id))
+                                .withSelfRel()
+                                .toMono()
+                                .map(link -> EntityModel.of(issue, link))))
                 .orElseGet(() -> ResponseEntity
                         .status(404)
                         .body(Mono.empty()));
