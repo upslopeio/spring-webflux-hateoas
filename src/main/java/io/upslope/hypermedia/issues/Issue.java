@@ -1,7 +1,11 @@
 package io.upslope.hypermedia.issues;
 
+import org.springframework.hateoas.server.core.Relation;
+
 import java.util.*;
 
+
+@Relation(collectionRelation = "issues")
 public class Issue {
 
     private UUID id;
